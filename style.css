@@ -28,13 +28,11 @@ textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; 
   justify-content: center;
   align-items: center;
 }
-
 .huddle-content {
   position: relative;
   text-align: center;
   color: var(--text);
 }
-
 .huddle-content img {
   max-height: 70vh;
   max-width: 90vw;
@@ -42,13 +40,11 @@ textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; 
   box-shadow: 0 0 16px var(--glow-turquoise);
   margin-bottom: 1rem;
 }
-
 .huddle-content p {
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--accent);
 }
-
 .huddle-close {
   position: absolute;
   top: 1rem;
