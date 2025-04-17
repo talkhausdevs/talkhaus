@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TalkHaus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header><div class="logo">TalkHaus</div></header>
+  <main>
+    <aside class="sidebar visible">
+      <ul>
+        <li><a href="#">🏠 Home</a></li>
+        <li><a href="#">🎥 Flicks</a></li>
+        <li><a href="#">👤 Profile</a></li>
+        <li><a href="#">⚙️ Settings</a></li>
+      </ul>
+    </aside>
+    <section class="feed">
+      <div class="huddle-bubbles">
+        <div class="bubble" style="background-image:url('https://i.pravatar.cc/150?img=12');"></div>
+      </div>
+      <section class="composer-card">
+        <textarea placeholder="What's on your mind?"></textarea>
+        <button class="btn">Post</button>
+      </section>
+    </section>
+    <aside class="rightbar">
+      <h3>Explore</h3>
+      <p style="color:var(--muted);">Trending and spotlight features coming soon...</p>
+    </aside>
+  </main>
+  <button id="openDMs" class="floating-btn" title="Direct Messages">💬</button>
+  <button id="openPost" class="floating-btn" title="Create Post">＋</button>
+  <div id="dmModal" class="dm-modal">
+    <div class="dm-modal-content">
+      <span class="dm-close" onclick="closeDMModal()">×</span>
+      <h3>Direct Messages</h3>
+      <div class="dm-modal-thread">
+        <div class="message from-them">Hey fren 👀</div>
+      </div>
+      <div class="dm-compose">
+        <input type="text" placeholder="Type a message..." />
+        <button class="btn">Send</button>
+      </div>
+    </div>
+  </div>
+  <div id="authModal" class="auth-modal">
+    <div class="auth-modal-content">
+      <span class="auth-close" onclick="closeAuthModal()">×</span>
+      <h2>Login to TalkHaus</h2>
+      <input type="email" id="authEmail" placeholder="Email" />
+      <input type="password" id="authPassword" placeholder="Password" />
+      <div class="auth-actions">
+        <button onclick="signIn()">Sign In</button>
+        <button onclick="signUp()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="firebase.js"></script>
+  <script src="auth_modal.js"></script>
+  <script>
+    document.getElementById("openDMs").addEventListener("click", function () {
+      document.getElementById("dmModal").style.display = "flex";
+    });
+    function closeDMModal() {
+      document.getElementById("dmModal").style.display = "none";
+    }
+    function closeAuthModal() {
+      document.getElementById("authModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
