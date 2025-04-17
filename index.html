@@ -6,6 +6,15 @@
   <title>TalkHaus</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+  <script> 
+function openHuddle(imageUrl, username) {
+  document.getElementById('huddleImage').src = imageUrl;
+  document.getElementById('huddleUser').innerText = username;
+  document.getElementById('huddleModal').style.display = 'flex';
+}
+function closeHuddle() {
+  document.getElementById('huddleModal').style.display = 'none';
+}
 <body>
   <header><div class="logo">TalkHaus</div></header>
   <main>
