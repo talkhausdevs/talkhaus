@@ -24,7 +24,24 @@
       <section class="composer-card">
         <textarea placeholder="What's on your mind?"></textarea>
         <button class="btn">Post</button>
-      </section>
+      </section>   
+<!-- Huddle Bubbles -->
+<div class="huddle-bubbles">
+  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=1', 'ZayTalks')"
+    style="background-image:url('https://i.pravatar.cc/150?img=1');"></div>
+  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=2', 'LaniVibes')"
+    style="background-image:url('https://i.pravatar.cc/150?img=2');"></div>
+  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=3', 'Bijou Nicole')"
+    style="background-image:url('https://i.pravatar.cc/150?img=3');"></div>
+</div>
+<!-- Huddle Modal -->
+<div id="huddleModal" class="huddle-modal">
+  <div class="huddle-content">
+    <span class="huddle-close" onclick="closeHuddle()">×</span>
+    <img id="huddleImage" src="" alt="Huddle Content" />
+    <p id="huddleUser"></p>
+  </div>
+</div>
     </section>
     <aside class="rightbar">
       <h3>Explore</h3>
