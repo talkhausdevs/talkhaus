@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,10 +40,20 @@
     <a href="#">🏠</a>
     <a href="#">🎥</a>
     <a href="#" id="createBtn">＋</a>
-    <a href="#" onclick="document.getElementById('dmModal').style.display='flex'">💬</a>
+    <a href="#" onclick="document.getElementById('dmModal')?.style.display='flex'">💬</a>
     <a href="#">👤</a>
   </footer>
 
+  <!-- Floating Composer Modal -->
+  <div id="composerModal" class="composer-modal">
+    <div class="composer-box">
+      <span class="composer-close" onclick="closeComposer()">×</span>
+      <textarea placeholder="What's on your mind?"></textarea>
+      <button class="btn">Post</button>
+    </div>
+  </div>
+
+  <!-- Huddle Modal -->
   <div id="huddleModal" class="huddle-modal">
     <div class="huddle-content">
       <span class="huddle-close" onclick="closeHuddle()">×</span>
@@ -51,6 +62,7 @@
     </div>
   </div>
 
+  <!-- Auth Modal -->
   <div id="authModal" class="auth-modal">
     <div class="auth-modal-content">
       <span class="auth-close" onclick="closeAuthModal()">×</span>
@@ -72,12 +84,24 @@
       document.getElementById('huddleUser').innerText = username;
       document.getElementById('huddleModal').style.display = 'flex';
     }
+
     function closeHuddle() {
       document.getElementById('huddleModal').style.display = 'none';
     }
+
     function closeAuthModal() {
       document.getElementById("authModal").style.display = "none";
     }
+
+    function openComposer() {
+      document.getElementById("composerModal").style.display = "flex";
+    }
+
+    function closeComposer() {
+      document.getElementById("composerModal").style.display = "none";
+    }
+
+    document.getElementById("openPost").addEventListener("click", openComposer);
   </script>
 </body>
 </html>
