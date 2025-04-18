@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
 
 :root {
@@ -182,4 +181,100 @@ body {
   font-weight: 600;
   color: #000;
   cursor: pointer;
+}
+
+/* === Profile Page Styles === */
+.profile-view {
+  background: #0b0b0c;
+  color: #e7d7c1;
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+}
+
+.profile-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.profile-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #e7d7c1;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.username-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username-row h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.verified-badge {
+  font-size: 1.2rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  background: #00aaff;
+  color: white;
+}
+
+.verified-badge.blue { background: #1da1f2; }
+.verified-badge.purple { background: purple; }
+.verified-badge.green { background: green; }
+.verified-badge.beige { background: #e7d7c1; color: #000; }
+
+.display-name {
+  font-weight: bold;
+  margin: 0.2rem 0;
+}
+
+.bio {
+  font-style: italic;
+  color: #ccc;
+}
+
+.profile-actions .btn {
+  background: #e7d7c1;
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile-content h3 {
+  margin-top: 2rem;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.post-tile {
+  background: #121212;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffd080;
 }
