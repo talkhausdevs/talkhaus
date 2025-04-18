@@ -14,29 +14,70 @@
 
   <main class="profile-container">
     <section class="profile-header">
-      <img src="https://i.pravatar.cc/150?img=11" alt="Profile Picture" class="profile-avatar" />
+      <img id="profileAvatar" src="https://i.pravatar.cc/150?img=11" alt="Profile Picture" class="profile-avatar" />
       <div class="profile-info">
         <div class="username-row">
-          <h2>@LaniVibes</h2>
-          <span class="verified-badge blue">✔</span>
+          <h2 id="profileUsername">@username</h2>
+          <span class="verified-badge blue" id="verifiedBadge">✔</span>
         </div>
-        <p class="display-name">Lani Vibes</p>
-        <p class="bio">Music is my therapy 💫 | LA 📍</p>
-        <div class="profile-actions">
-          <button class="btn">Message</button>
-          <button class="btn">Follow</button>
-        </div>
+        <p class="display-name" id="profileDisplayName">Display Name</p>
+        <p class="bio" id="profileBio">Bio loading...</p>
       </div>
     </section>
 
     <section class="profile-content">
       <h3>My Posts</h3>
-      <div class="post-grid">
-        <div class="post-tile">🎵 New Track</div>
-        <div class="post-tile">📸 Behind the Scenes</div>
-        <div class="post-tile">📝 Random Thoughts</div>
+      <div class="post-grid" id="userPosts">
+        <div class="post-tile">Loading posts...</div>
       </div>
     </section>
   </main>
+
+  <footer class="bottom-nav">
+    <a href="index.html">🏠</a>
+    <a href="flicks.html">🎥</a>
+    <a href="#" onclick="openComposer()">＋</a>
+    <a href="#" onclick="document.getElementById('dmModal')?.style.display='flex'">💬</a>
+    <a href="profile.html">👤</a>
+  </footer>
+
+  <!-- Firebase + Composer logic -->
+  <script type="module" src="firebase.js"></script>
+  <script src="composer.js"></script>
+  <script>
+    async function loadUserProfile() {
+      const user = firebaseTools.auth.currentUser;
+      if (!user) {
+        alert("Please log in to view profile.");
+        window.location.href = "index.html";
+        return;
+      }
+
+      const db = firebaseTools.db;
+      const docRef = firebaseTools.collection(db, "users");
+      const snapshot = await firebaseTools.getDocs(docRef);
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.uid === user.uid) {
+          document.getElementById("profileUsername").innerText = "@" + data.username || user.email;
+          document.getElementById("profileDisplayName").innerText = data.displayName || "Unnamed";
+          document.getElementById("profileBio").innerText = data.bio || "No bio yet.";
+          document.getElementById("profileAvatar").src = data.photoURL || "https://i.pravatar.cc/150?img=11";
+
+          // Set badge type (you can enhance this later)
+          const badge = document.getElementById("verifiedBadge");
+          if (data.badgeColor) badge.className = `verified-badge ${data.badgeColor}`;
+        }
+      });
+    }
+
+    window.onload = loadUserProfile;
+
+    function openComposer() {
+      const composerModal = document.getElementById("composerModal");
+      if (composerModal) composerModal.style.display = "flex";
+    }
+  </script>
 </body>
 </html>
