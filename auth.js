@@ -1,1 +1,1 @@
-// same as before (shortened for brevity)
+// Auth placeholder
