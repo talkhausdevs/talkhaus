@@ -7,42 +7,42 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><div class="logo">TalkHaus</div></header>
-  <main>
-    <aside class="sidebar visible">
-      <ul>
-        <li><a href="#">🏠 Home</a></li>
-        <li><a href="#">🎥 Flicks</a></li>
-        <li><a href="#">👤 Profile</a></li>
-        <li><a href="#">⚙️ Settings</a></li>
-      </ul>
-    </aside>
-    <section class="feed">
-      <div class="huddle-bubbles">
-        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=1', 'ZayTalks')" style="background-image:url('https://i.pravatar.cc/150?img=1');"></div>
-        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=2', 'LaniVibes')" style="background-image:url('https://i.pravatar.cc/150?img=2');"></div>
-        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=3', 'Bijou Nicole')" style="background-image:url('https://i.pravatar.cc/150?img=3');"></div>
-      </div>
-      <section class="composer-card">
-        <textarea placeholder="What's on your mind?"></textarea>
-        <button class="btn">Post</button>
-      </section>
-    </section>
-    <aside class="rightbar">
-      <h3>Explore</h3>
-      <p style="color:var(--muted);">Trending and spotlight features coming soon...</p>
-    </aside>
-  </main>
-  <button id="openDMs" class="floating-btn" title="Direct Messages">💬</button>
-  <button id="openPost" class="floating-btn" title="Create Post">＋</button>
-  <div id="dmModal" class="dm-modal">
-    <div class="dm-modal-content">
-      <span class="dm-close" onclick="closeDMModal()">×</span>
-      <h3>Direct Messages</h3>
-      <div class="dm-modal-thread"><div class="message from-them">Hey fren 👀</div></div>
-      <div class="dm-compose"><input type="text" placeholder="Type a message..." /><button class="btn">Send</button></div>
+  <header class="top-nav">
+    <div class="logo">TalkHaus</div>
+    <nav>
+      <a href="#">🏠</a>
+      <a href="#">🔍</a>
+      <a href="#" onclick="openAuthModal()">👤</a>
+    </nav>
+  </header>
+
+  <section class="huddles-row">
+    <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=1', 'ZayTalks')" style="background-image:url('https://i.pravatar.cc/150?img=1');"></div>
+    <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=2', 'LaniVibes')" style="background-image:url('https://i.pravatar.cc/150?img=2');"></div>
+    <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=3', 'Bijou Nicole')" style="background-image:url('https://i.pravatar.cc/150?img=3');"></div>
+  </section>
+
+  <main class="feed">
+    <div class="post-card">
+      <div class="user">@ZayTalks</div>
+      <p>Just dropped a new track 🔥 #TalkHaus</p>
     </div>
-  </div>
+    <div class="post-card">
+      <div class="user">@LaniVibes</div>
+      <p>Late night thoughts... 💭</p>
+    </div>
+  </main>
+
+  <button id="openPost" class="floating-btn">＋</button>
+
+  <footer class="bottom-nav">
+    <a href="#">🏠</a>
+    <a href="#">🎥</a>
+    <a href="#" id="createBtn">＋</a>
+    <a href="#" onclick="document.getElementById('dmModal').style.display='flex'">💬</a>
+    <a href="#">👤</a>
+  </footer>
+
   <div id="huddleModal" class="huddle-modal">
     <div class="huddle-content">
       <span class="huddle-close" onclick="closeHuddle()">×</span>
@@ -50,6 +50,7 @@
       <p id="huddleUser"></p>
     </div>
   </div>
+
   <div id="authModal" class="auth-modal">
     <div class="auth-modal-content">
       <span class="auth-close" onclick="closeAuthModal()">×</span>
@@ -62,13 +63,10 @@
       </div>
     </div>
   </div>
+
   <script type="module" src="firebase.js"></script>
   <script src="auth.js"></script>
   <script>
-    document.getElementById("openDMs").addEventListener("click", function () {
-      document.getElementById("dmModal").style.display = "flex";
-    });
-    function closeDMModal() { document.getElementById("dmModal").style.display = "none"; }
     function openHuddle(imageUrl, username) {
       document.getElementById('huddleImage').src = imageUrl;
       document.getElementById('huddleUser').innerText = username;
