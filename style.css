@@ -2,54 +2,16 @@ body { background: #0b0b0c; color: #e7d7c1; font-family: sans-serif; margin: 0; 
 header { background: #111; padding: 1rem; text-align: center; font-size: 2rem; font-weight: bold; color: #e7d7c1; }
 main { display: grid; grid-template-columns: 1fr 2.5fr 1fr; gap: 2rem; padding: 2rem; }
 .sidebar, .feed, .rightbar { background: #121212; padding: 1rem; border-radius: 10px; }
-.bubble { width: 60px; height: 60px; border-radius: 50%; background-size: cover; }
+.bubble { width: 60px; height: 60px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid #e7d7c1; box-shadow: 0 0 8px #00ffd080; cursor: pointer; }
 textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; background: #1a1a1a; color: #e7d7c1; border: none; }
 .btn { background: #e7d7c1; color: #000; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
 .floating-btn { position: fixed; bottom: 1.5rem; width: 55px; height: 55px; border-radius: 50%; font-size: 26px; background: #e7d7c1; color: #000; border: none; cursor: pointer; z-index: 1000; display: flex; align-items: center; justify-content: center; }
 #openDMs { left: 1.5rem; }
 #openPost { right: 1.5rem; }
-.dm-modal, .auth-modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
-.dm-modal-content, .auth-modal-content { background: #121212; color: #e7d7c1; padding: 2rem; border-radius: 10px; width: 90%; max-width: 400px; position: relative; }
-.dm-close, .auth-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; color: #e7d7c1; }
+.dm-modal, .auth-modal, .huddle-modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); justify-content: center; align-items: center; }
+.dm-modal-content, .auth-modal-content, .huddle-content { background: #121212; color: #e7d7c1; padding: 2rem; border-radius: 10px; width: 90%; max-width: 400px; position: relative; text-align: center; }
+.dm-close, .auth-close, .huddle-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; color: #e7d7c1; font-size: 2rem; }
 .auth-modal input { padding: 0.75rem; width: 100%; border: none; margin: 0.5rem 0; border-radius: 8px; background: #1a1a1a; color: #e7d7c1; }
 .auth-actions { display: flex; gap: 1rem; }
 .auth-actions button { flex: 1; }
-/* Huddle Modal */
-.huddle-modal {
-  display: none;
-  position: fixed;
-  z-index: 3000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(12, 12, 12, 0.95);
-  backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
-}
-.huddle-content {
-  position: relative;
-  text-align: center;
-  color: var(--text);
-}
-.huddle-content img {
-  max-height: 70vh;
-  max-width: 90vw;
-  border-radius: var(--radius);
-  box-shadow: 0 0 16px var(--glow-turquoise);
-  margin-bottom: 1rem;
-}
-.huddle-content p {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: var(--accent);
-}
-.huddle-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  color: var(--accent);
-  cursor: pointer;
-}
+.huddle-content img { max-height: 70vh; max-width: 90vw; border-radius: 8px; box-shadow: 0 0 16px #00ffd080; margin-bottom: 1rem; }

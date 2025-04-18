@@ -6,15 +6,6 @@
   <title>TalkHaus</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-  <script> 
-function openHuddle(imageUrl, username) {
-  document.getElementById('huddleImage').src = imageUrl;
-  document.getElementById('huddleUser').innerText = username;
-  document.getElementById('huddleModal').style.display = 'flex';
-}
-function closeHuddle() {
-  document.getElementById('huddleModal').style.display = 'none';
-}
 <body>
   <header><div class="logo">TalkHaus</div></header>
   <main>
@@ -28,29 +19,14 @@ function closeHuddle() {
     </aside>
     <section class="feed">
       <div class="huddle-bubbles">
-        <div class="bubble" style="background-image:url('https://i.pravatar.cc/150?img=12');"></div>
+        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=1', 'ZayTalks')" style="background-image:url('https://i.pravatar.cc/150?img=1');"></div>
+        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=2', 'LaniVibes')" style="background-image:url('https://i.pravatar.cc/150?img=2');"></div>
+        <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=3', 'Bijou Nicole')" style="background-image:url('https://i.pravatar.cc/150?img=3');"></div>
       </div>
       <section class="composer-card">
         <textarea placeholder="What's on your mind?"></textarea>
         <button class="btn">Post</button>
-      </section>   
-<!-- Huddle Bubbles -->
-<div class="huddle-bubbles">
-  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=1', 'ZayTalks')"
-    style="background-image:url('https://i.pravatar.cc/150?img=1');"></div>
-  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=2', 'LaniVibes')"
-    style="background-image:url('https://i.pravatar.cc/150?img=2');"></div>
-  <div class="bubble" onclick="openHuddle('https://i.pravatar.cc/300?img=3', 'Bijou Nicole')"
-    style="background-image:url('https://i.pravatar.cc/150?img=3');"></div>
-</div>
-<!-- Huddle Modal -->
-<div id="huddleModal" class="huddle-modal">
-  <div class="huddle-content">
-    <span class="huddle-close" onclick="closeHuddle()">×</span>
-    <img id="huddleImage" src="" alt="Huddle Content" />
-    <p id="huddleUser"></p>
-  </div>
-</div>
+      </section>
     </section>
     <aside class="rightbar">
       <h3>Explore</h3>
@@ -63,13 +39,15 @@ function closeHuddle() {
     <div class="dm-modal-content">
       <span class="dm-close" onclick="closeDMModal()">×</span>
       <h3>Direct Messages</h3>
-      <div class="dm-modal-thread">
-        <div class="message from-them">Hey fren 👀</div>
-      </div>
-      <div class="dm-compose">
-        <input type="text" placeholder="Type a message..." />
-        <button class="btn">Send</button>
-      </div>
+      <div class="dm-modal-thread"><div class="message from-them">Hey fren 👀</div></div>
+      <div class="dm-compose"><input type="text" placeholder="Type a message..." /><button class="btn">Send</button></div>
+    </div>
+  </div>
+  <div id="huddleModal" class="huddle-modal">
+    <div class="huddle-content">
+      <span class="huddle-close" onclick="closeHuddle()">×</span>
+      <img id="huddleImage" src="" alt="Huddle Content" />
+      <p id="huddleUser"></p>
     </div>
   </div>
   <div id="authModal" class="auth-modal">
@@ -85,13 +63,19 @@ function closeHuddle() {
     </div>
   </div>
   <script type="module" src="firebase.js"></script>
-  <script src="auth_modal.js"></script>
+  <script src="auth.js"></script>
   <script>
     document.getElementById("openDMs").addEventListener("click", function () {
       document.getElementById("dmModal").style.display = "flex";
     });
-    function closeDMModal() {
-      document.getElementById("dmModal").style.display = "none";
+    function closeDMModal() { document.getElementById("dmModal").style.display = "none"; }
+    function openHuddle(imageUrl, username) {
+      document.getElementById('huddleImage').src = imageUrl;
+      document.getElementById('huddleUser').innerText = username;
+      document.getElementById('huddleModal').style.display = 'flex';
+    }
+    function closeHuddle() {
+      document.getElementById('huddleModal').style.display = 'none';
     }
     function closeAuthModal() {
       document.getElementById("authModal").style.display = "none";
