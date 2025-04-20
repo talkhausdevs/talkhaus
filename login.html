@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | TalkHaus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-screen">
+  <div class="login-container">
+    <h1 class="logo-text">TalkHaus</h1>
+    <p class="tagline">Your Voice. Your Vibe. Your Haus.</p>
+
+    <input type="email" id="loginEmail" placeholder="Email" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <div class="auth-actions">
+      <button onclick="signIn()">Log In</button>
+      <button onclick="signUp()">Create Account</button>
+    </div>
+    <p class="note">No Huddles. No Flicks. Just Real Ones 💬</p>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
