@@ -1,1 +1,76 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home | TalkHaus</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home-screen">
+  <aside class="sidebar">
+    <div class="logo">TalkHaus</div>
+    <nav>
+      <a href="home.html">🏠 Home</a>
+      <a href="#">🔍 Explore</a>
+      <a href="#">💬 Messages</a>
+      <a href="profile.html">👤 Profile</a>
+    </nav>
+    <button class="btn post-btn" onclick="toggleComposer()">+ Post</button>
+  </aside>
+
+  <main class="feed">
+    <div id="postComposer" class="composer-box" style="display:none;">
+      <textarea id="postInput" placeholder="What's on your mind?"></textarea>
+      <button onclick="submitPost()">Post</button>
+    </div>
+    <div id="postFeed" class="post-feed">
+      <!-- Posts will load here -->
+    </div>
+  </main>
+
+  <script type="module" src="firebase.js"></script>
+  <script>
+    async function submitPost() {
+      const content = document.getElementById("postInput").value;
+      if (!content) return alert("Say something first!");
+      const user = firebaseTools.auth.currentUser;
+      const db = firebaseTools.db;
+      const postsRef = firebaseTools.collection(db, "posts");
+
+      await firebaseTools.addDoc(postsRef, {
+        uid: user.uid,
+        content,
+        timestamp: new Date().toISOString()
+      });
+      alert("Posted!");
+      document.getElementById("postInput").value = "";
+      loadPosts();
+    }
+
+    async function loadPosts() {
+      const db = firebaseTools.db;
+      const snapshot = await firebaseTools.getDocs(firebaseTools.collection(db, "posts"));
+      const feed = document.getElementById("postFeed");
+      feed.innerHTML = "";
+      snapshot.forEach(doc => {
+        const post = doc.data();
+        const div = document.createElement("div");
+        div.className = "post";
+        div.innerHTML = `<p>${post.content}</p><small>${new Date(post.timestamp).toLocaleString()}</small>`;
+        feed.prepend(div);
+      });
+    }
+
+    function toggleComposer() {
+      const composer = document.getElementById("postComposer");
+      composer.style.display = composer.style.display === "none" ? "block" : "none";
+    }
+
+    firebaseTools.auth.onAuthStateChanged(user => {
+      if (!user) window.location.href = "login.html";
+      else loadPosts();
+    });
+  </script>
+</body>
+</html>
